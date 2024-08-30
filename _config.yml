@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Mohit Acharya / Site Title"
+title                    : "Mohit Acharya / Blog"
 title_separator          : "-"
 name                     : &name "Mohit Acharya"
 description              : &description "personal description"
@@ -22,11 +22,11 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
+  name             : "Mohit Acharya"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "Passionate about computer science and the semiconductor industry."
+  location         : "India"
+  employer         : "VIT Chennai"
   uri              : # URL
   email            : "none@example.org" 
 
