@@ -4,6 +4,103 @@ title: Blog
 permalink: /blog/
 ---
 
+{% assign topics = "technical|general|books" | split: "|" %}
+
+<nav class="topic-bar" role="tablist">
+  {% for t in topics %}
+    <button class="topic-tab" type="button" data-topic="{{ t }}">{{ t | capitalize }}</button>
+  {% endfor %}
+</nav>
+
+<div class="posts" id="posts-list">
+  {% for post in site.posts %}
+  {% assign t = post.topic | default: 'technical' %}
+  <article class="post" data-topic="{{ t | downcase }}">
+    <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+
+    <div class="entry">
+      {% if post.content contains '<!--more-->' %}
+        {{ post.excerpt }}
+      {% else %}
+        {{ post.excerpt | markdownify | strip_html | truncate: 160 }}
+      {% endif %}
+    </div>
+
+    <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">
+      Read more&nbsp;&#183;{% include read-time.html content=post.content %}
+    </a>
+  </article>
+  {% endfor %}
+</div>
+<script>
+(function () {
+  const DEFAULT_TOPIC = 'technical';
+  const posts = document.querySelectorAll('#posts-list .post');
+  const tabs = document.querySelectorAll('.topic-tab');
+
+  // Remove any existing hash from the URL
+  if (location.hash && history.replaceState) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+
+  function show(topic) {
+    tabs.forEach(b => b.classList.toggle('active', b.dataset.topic === topic));
+
+    let any = false;
+    posts.forEach(p => {
+      const match = p.dataset.topic === topic;
+      p.style.display = match ? '' : 'none';
+      if (match) any = true;
+    });
+
+    // Do not write hash to the URL
+    document.getElementById('no-posts')?.remove();
+    if (!any) {
+      const msg = document.createElement('p');
+      msg.id = 'no-posts';
+      msg.textContent = 'No posts in this topic yet.';
+      document.getElementById('posts-list').prepend(msg);
+    }
+  }
+
+  tabs.forEach(b => b.addEventListener('click', () => show(b.dataset.topic)));
+  show(DEFAULT_TOPIC);
+})();
+</script>
+<!--
+<script>
+(function () {
+  const defaultTopic = (location.hash || '').replace('#','') || 'technical';
+  const posts = document.querySelectorAll('#posts-list .post');
+  const tabs = document.querySelectorAll('.topic-tab');
+
+  function show(topic) {
+    tabs.forEach(b => b.classList.toggle('active', b.dataset.topic === topic));
+    let any = false;
+    posts.forEach(p => {
+      const match = p.dataset.topic === topic;
+      p.style.display = match ? '' : 'none';
+      if (match) any = true;
+    });
+    if (history.replaceState) history.replaceState(null, '', '#' + topic);
+    else location.hash = topic;
+    // Optional: show a message if no posts matched
+    document.getElementById('no-posts')?.remove();
+    if (!any) {
+      const msg = document.createElement('p');
+      msg.id = 'no-posts';
+      msg.textContent = 'No posts in this topic yet.';
+      document.getElementById('posts-list').prepend(msg);
+    }
+  }
+
+  tabs.forEach(b => b.addEventListener('click', () => show(b.dataset.topic)));
+  show(defaultTopic);
+})();
+</script>
+
+
+
 <div class="posts">
   {% for post in site.posts %}
   <article class="post">
@@ -11,7 +108,7 @@ permalink: /blog/
     <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
     <div class="entry">
-      {% if post.content contains '<!--more-->' %}
+      {% if post.content contains '<!--more--' %}
 
       {{ post.excerpt }}
 
@@ -26,5 +123,5 @@ permalink: /blog/
   </article>
   {% endfor %}
 
-  <!--{% include pagination.html %}-->
+  {% include pagination.html %}-->
 </div>

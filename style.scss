@@ -617,6 +617,41 @@ footer {
   }
 }
 
+.topic-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  margin: 0 0 1rem;
+  
+}
+
+.topic-tab {
+  appearance: none;
+  background: transparent;
+  border: 0;                 // no pill/border
+  padding: 0;                // tight like links
+  cursor: pointer;
+  font: inherit;
+  color: $gray;  // light color by default
+  
+  // add leading "# "
+  
+  
+
+  // add dot separator after each except last
+  &:not(:last-child)::after {
+    content: "  •";
+    color: $gray;
+    margin-left: .5rem;
+  }
+
+  &:hover { color: $darkGray; text-decoration: none; }
+  &.active { color: $darkerGray; font-weight: 600; }
+  &:focus-visible { outline: none; text-decoration: underline; }
+}
+
+
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "message";

@@ -1,8 +1,7 @@
 ---
 layout: post
-title: Hello World
+title: Bye World
 categories: [content, demo]
-topic: general
 ---
 
 Hello and welcome. The only purpose of this post is to greet you when your site comes alive for the first time.  
