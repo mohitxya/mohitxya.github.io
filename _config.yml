@@ -30,14 +30,14 @@ baseurl: ""
 
 # Navigation menu
 navigation_links:
-  - title: Blog
+  - title: About
     url: /
 
-  - title: About
-    url: /about
+  - title: Blog
+    url: /blog/
 
   - title: Search
-    url: /search
+    url: /search/
 
 # Footer icons
 footer_links:

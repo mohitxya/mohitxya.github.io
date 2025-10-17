@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /search
+permalink: /search/
 ---
   
 #### Looking for something?  

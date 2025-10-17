@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /about
+permalink: /
 ---
 
 Hey! I'm Mohit. I'm an Undergrad majoring in Electronics Engineering. 
