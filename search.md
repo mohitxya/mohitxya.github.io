@@ -7,7 +7,7 @@ permalink: /search/
   
 {% include search.html %}
 
-#### Search by topic: 
+#### Search by category: 
 {% for category in site.categories %}
   {% assign name = category[0] %}
   {% assign posts = category[1] %}
