@@ -16,7 +16,7 @@ permalink: /blog/
   {% for post in site.posts %}
   {% assign t = post.topic | default: 'technical' %}
   <article class="post" data-topic="{{ t | downcase }}">
-    <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+    <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
 
     <div class="entry">
       {% if post.content contains '<!--more-->' %}
