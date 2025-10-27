@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building an MNIST Classifier from Scratch"
-categories: [content, demo]
+categories: [Content, Demo]
 topic: technical
 ---
 

@@ -651,6 +651,33 @@ footer {
   &:focus-visible { outline: none; text-decoration: underline; }
 }
 
+.cgz
+{
+  background-color: rgba(0, 0, 0, 0.05); /* light gray tint */
+  border-radius: 4px;
+  padding: 0;
+  font-size: 0.8em;
+  color: #555;
+}
+.dgz
+{
+  background-color: #e7f0ff; /* soft blue highlight */
+}
+.metad
+{
+  margin-left: 0.9em;
+}
+#posts-list ul {
+  list-style-type: circle; /* hollow bullets */
+  margin-left: 1.5em;      /* optional indentation */
+  padding-left: 0.5em;
+}
+
+/* Optional: slightly lighter bullet color for subtlety */
+#posts-list li::marker {
+  color: #555; /* soft gray bullets */
+}
+
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
