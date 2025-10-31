@@ -4,7 +4,6 @@ title: Projects
 permalink: /projects/
 ---
 
-Hey! Still under construction!
 
 <div style="overflow:auto; margin-bottom: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 1em;">
   <img src="/assets/image/404.jpg" 
