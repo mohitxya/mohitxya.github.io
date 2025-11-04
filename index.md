@@ -19,3 +19,5 @@ I built this blog to quench some innate urge to categorize and organize my thoug
 1. Hack Computer (<a href="https://github.com/mohitxya/nand-to-tetris" target="_blank" rel="noopener">Nand to Tetris</a>)
 2. Working through Operating Systems: Three Easy Pieces 
 3. BusDB (A Toy Database from the famous CMU 15-445)
+
+View my <a href="./assets/docs/resume.pdf" target="_blank" rel="noopener">Resume</a>.
