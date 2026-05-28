@@ -4,24 +4,74 @@
 // VARIABLES
 //
 
-// Colors
-$white: #FFFFFF;
-$black: #000000;
-$gray: #666666;
-$lightGray: #EEEEEE;
-$paleGray: #DDDDDD;
-$darkGray: #333333;
-$darkerGray: #222222;
+// Light mode (default) colors defined as CSS custom properties
+:root {
+  --bg: #f7f4ee;
+  --bg-secondary: #eae7e0;
+  --text-primary: #333333;
+  --text-heading: #222222;
+  --text-secondary: #666666;
+  --border-color: #ddd8ce;
+  --border-light: #e5e1d9;
+  --code-bg: #fdf6e3;
+  --code-text: #586e75;
+  --code-border: #ddd8ce;
+  --blockquote-bg: #f7f4ee;
+  --table-stripe: #efeadf;
+  --table-border: #ddd8ce;
+  --table-header: #efeadf;
+  --footer-bg: #eae7e0;
+  --footer-border: #ddd8ce;
+  --selection-bg: #4183C4;
+  --selection-text: #ffffff;
+  --categories-btn-bg: #f7f4ee;
+  --categories-btn-border: #ddd8ce;
+  --search-shadow: rgba(0, 0, 0, 0.075);
+  --cgz-bg: rgba(0, 0, 0, 0.05);
+  --cgz-text: #555;
+  --dgz-bg: #e7f0ff;
+  --marker-color: #555;
+}
+
+[data-theme="dark"] {
+  --bg: #0f1115;
+  --bg-secondary: #181b21;
+  --text-primary: #c9c5be;
+  --text-heading: #e2dfd8;
+  --text-secondary: #8a8680;
+  --border-color: #2a2d33;
+  --border-light: #23262c;
+  --code-bg: #181b21;
+  --code-text: #93a1a1;
+  --code-border: #2a2d33;
+  --blockquote-bg: #181b21;
+  --table-stripe: #1a1d23;
+  --table-border: #2a2d33;
+  --table-header: #1a1d23;
+  --footer-bg: #181b21;
+  --footer-border: #2a2d33;
+  --selection-bg: #4183C4;
+  --selection-text: #ffffff;
+  --categories-btn-bg: #181b21;
+  --categories-btn-border: #2a2d33;
+  --search-shadow: rgba(0, 0, 0, 0.3);
+  --cgz-bg: rgba(255, 255, 255, 0.06);
+  --cgz-text: #999;
+  --dgz-bg: #1a2333;
+  --marker-color: #888;
+}
+
+// Static color tokens (don't change with theme)
 $blue: #4183C4;
-$purple: #4141C4;
+$purple: #7b7bc4;
 $mahogany: #BD2C00;
 
 // Pagination colors
-$pagination-color: $darkGray;
+$pagination-color: var(--text-primary);
 $pagination-hover-color: $blue;
 $pagination-active-bg: $blue;
-$pagination-active-color: $white;
-$pagination-separator-color: $paleGray;
+$pagination-active-color: #ffffff;
+$pagination-separator-color: var(--border-color);
 
 // Font stacks
 $sans-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Roboto, "Droid Sans", Arimo, "Helvetica Neue", Helvetica, "Liberation Sans", Arial, Ubuntu, "DejaVu Sans", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Color Emoji", sans-serif;

@@ -8,12 +8,12 @@ html {
 }
 
 body {
-  background: $white;
+  background: var(--bg);
   font-family: $sans-font-family;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.66666666667;
-  color: $darkGray;
+  color: var(--text-primary);
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   font-kerning: normal;
@@ -28,6 +28,7 @@ body {
   margin: 0;
   flex-direction: column;
   overflow-wrap: break-word;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -47,7 +48,7 @@ ul, ol, dl, figure,
 
 h1, h2, h3, h4, h5, h6 {
   margin: 01em 0 15px;
-  color: $darkerGray;
+  color: var(--text-heading);
   font-family: $sans-font-family;
   font-weight: 700;
   line-height: 1.66666666667;
@@ -131,7 +132,7 @@ figcaption {
     margin-top: -20px;
     margin-bottom: 10px;
     text-align: center;
-    color: $gray;
+    color: var(--text-secondary);
 }
 
 .gmnoprint img {
@@ -142,28 +143,28 @@ hr {
   position: relative;
   margin-top: 35px;
   margin-bottom: 35px;
-  border: 01px solid $lightGray;
+  border: 01px solid var(--border-light);
 }
 
 .date {
   font-weight: bold;
-  color: $gray;
+  color: var(--text-secondary);
   margin-bottom: 35px;
 }
 
 .post-categories {
   font-weight: bold;
-  color: $gray;
+  color: var(--text-secondary);
   margin-bottom: 40px;
 
   .categories-button {
     display: inline-block;
     text-align: center;
-    border: 01px solid $paleGray;
+    border: 01px solid var(--categories-btn-border);
     border-radius: 03px;
-    background: #ffffff;
+    background: var(--categories-btn-bg);
     font-weight: 400;
-    color: $gray;
+    color: var(--text-secondary);
     font-size: 16px !important;
     white-space: nowrap;
     text-decoration: none;
@@ -175,7 +176,7 @@ hr {
   }
 
   .categories-button:hover {
-    color: $darkGray;
+    color: var(--text-primary);
     text-decoration: underline;
   }
 
@@ -187,13 +188,13 @@ hr {
 .share-post {
   isolation: isolate;
   font-weight: bold;
-  color: $gray;
+  color: var(--text-secondary);
   margin-bottom: 30px;
   }
 
 .no-comments {
   font-weight: bold;
-  color: $gray;
+  color: var(--text-secondary);
   margin-bottom: 25px;
 }
 
@@ -202,7 +203,7 @@ hr {
     margin: 0;
     padding: 0;
     font-weight: bold;
-    color: $gray;
+    color: var(--text-secondary);
   }
 }
 
@@ -221,7 +222,7 @@ hr {
         margin: 0;
         padding: 0;
         font-weight: bold;
-        color: $gray;
+        color: var(--text-secondary);
       }
 
       &:first-child {
@@ -238,22 +239,22 @@ hr {
 
 .category-head {
   font-weight: bold;
-  color: $gray;
+  color: var(--text-secondary);
 }
 
 ::-moz-selection {
-  color: $white;
-  background: $blue;
+  color: var(--selection-text);
+  background: var(--selection-bg);
 }
 ::selection {
-  color: $white;
-  background: $blue;
+  color: var(--selection-text);
+  background: var(--selection-bg);
 }
 
 blockquote {
-  background-color: $white;
-  color: $gray;
-  border-left: 04px solid #eeeeee;
+  background-color: var(--blockquote-bg);
+  color: var(--text-secondary);
+  border-left: 04px solid var(--border-light);
   padding-left: 15px;
   font-size: 16px !important;
   font-style: italic;
@@ -271,10 +272,10 @@ pre,
 code {
   font-family: $code-font-family !important;
   font-size: 15px !important;
-  color: #586e75;
-  border: 01px solid #dddddd;
+  color: var(--code-text);
+  border: 01px solid var(--code-border);
   border-radius: 03px;
-  background-color: #fdf6e3;
+  background-color: var(--code-bg);
 }
 
 code {
@@ -295,11 +296,11 @@ pre {
 .highlight {
   isolation: isolate;
   border-radius: 03px;
-  background: #fdf6e3;
+  background: var(--code-bg);
   @extend %vertical-rhythm;
 
   .highlighter-rouge & {
-    background: #fdf6e3;
+    background: var(--code-bg);
   }
 }
 
@@ -349,7 +350,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   overflow-x: auto;
-  border: 01px solid #dddddd;
+  border: 01px solid var(--table-border);
 
   & + table {
     margin-top: 30px;
@@ -357,7 +358,7 @@ table {
 
   tr {
     &:nth-child(even) {
-      background-color: #efefef;
+      background-color: var(--table-stripe);
     }
   }
 
@@ -366,12 +367,12 @@ table {
   }
 
   th {
-    background-color: #efefef;
-    border: 01px solid #dddddd;
+    background-color: var(--table-header);
+    border: 01px solid var(--table-border);
   }
 
   td {
-    border: 01px solid #dddddd;
+    border: 01px solid var(--table-border);
   }
 
   tr,
@@ -422,7 +423,7 @@ a[href^="#fnref:"] {
   display: flex;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 01px solid $lightGray;
+  border-bottom: 01px solid var(--border-light);
 
   @include mobile {
     display: block;
@@ -459,7 +460,7 @@ a[href^="#fnref:"] {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: var(--text-primary);
   font-family: $sans-font-family;
   font-weight: 400;
   font-size: 28px !important;
@@ -478,7 +479,7 @@ a[href^="#fnref:"] {
 
 .site-description {
   margin: -05px 0 0 0;
-  color: $gray;
+  color: var(--text-secondary);
   font-size: 16px !important;
   font-weight: 400;
 
@@ -500,7 +501,7 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $darkGray;
+    color: var(--text-primary);
     text-align: right;
     font-weight: 400;
     letter-spacing: 01px;
@@ -541,7 +542,7 @@ a.nav-menu-item:focus {
 
 .posts > .post {
   padding-bottom: 02em;
-  border-bottom: 01px solid $lightGray;
+  border-bottom: 01px solid var(--border-light);
 }
 
 .posts > .post:last-child {
@@ -584,9 +585,9 @@ a.nav-menu-item:focus {
 
 .wrapper-footer {
   margin-top: 30px;
-  border-top: 01px solid #ddd;
-  border-bottom: 01px solid #ddd;
-  background-color: $lightGray;
+  border-top: 01px solid var(--footer-border);
+  border-bottom: 01px solid var(--footer-border);
+  background-color: var(--footer-bg);
 }
 
 footer {
@@ -600,10 +601,10 @@ footer {
   .social-icon {
     display: inline-block;
     padding: 0 04px;
-    color: $gray;
+    color: var(--text-secondary);
 
       &:hover {
-      color: $darkGray;
+      color: var(--text-primary);
       }
   }
 }
@@ -633,35 +634,34 @@ footer {
   padding: 0;                // tight like links
   cursor: pointer;
   font: inherit;
-  color: $gray;  // light color by default
+  color: var(--text-secondary);  // light color by default
   
   // add leading "# "
-  
   
 
   // add dot separator after each except last
   &:not(:last-child)::after {
     content: "  •";
-    color: $gray;
+    color: var(--text-secondary);
     margin-left: .5rem;
   }
 
-  &:hover { color: $darkGray; text-decoration: none; }
-  &.active { color: $darkerGray; font-weight: 600; }
+  &:hover { color: var(--text-primary); text-decoration: none; }
+  &.active { color: var(--text-heading); font-weight: 600; }
   &:focus-visible { outline: none; text-decoration: underline; }
 }
 
 .cgz
 {
-  background-color: rgba(0, 0, 0, 0.05); /* light gray tint */
+  background-color: var(--cgz-bg);
   border-radius: 4px;
   padding: 0;
   font-size: 0.8em;
-  color: #555;
+  color: var(--cgz-text);
 }
 .dgz
 {
-  background-color: #e7f0ff; /* soft blue highlight */
+  background-color: var(--dgz-bg);
 }
 .metad
 {
@@ -675,7 +675,37 @@ footer {
 
 /* Optional: slightly lighter bullet color for subtlety */
 #posts-list li::marker {
-  color: #555; /* soft gray bullets */
+  color: var(--marker-color);
+}
+
+// Dark mode toggle button
+.theme-toggle {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1000;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+  padding: 0;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 

@@ -1,6 +1,16 @@
 <!doctype html>
 <html lang="{{ site.lang | default: "en" }}">
   <head>
+    <script>
+      // Set theme before any rendering to prevent flash
+      (function() {
+        var t = localStorage.getItem('theme');
+        if (t) { document.documentElement.setAttribute('data-theme', t); }
+        else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
     {% include meta.html %}
 
     {% seo title=false %}
@@ -116,17 +126,44 @@
                     ]});">
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌓</button>
     <script>
-      function addDarkmodeWidget() {
-        new Darkmode().showWidget();
-        window.addEventListener('load', addDarkmodeWidget);
-      }
-      const options = {
-        label: '🌓',
-      }
-      const darkmode = new Darkmode(options);
-            darkmode.showWidget();
+      (function() {
+        const toggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Determine initial theme
+        const stored = localStorage.getItem('theme');
+        if (stored) {
+          html.setAttribute('data-theme', stored);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          html.setAttribute('data-theme', 'dark');
+        }
+
+        // Update button icon
+        function updateIcon() {
+          const isDark = html.getAttribute('data-theme') === 'dark';
+          toggle.textContent = isDark ? '☀️' : '🌙';
+        }
+        updateIcon();
+
+        // Toggle handler
+        toggle.addEventListener('click', function() {
+          const isDark = html.getAttribute('data-theme') === 'dark';
+          const next = isDark ? 'light' : 'dark';
+          html.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          updateIcon();
+        });
+
+        // Listen for system preference changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          if (!localStorage.getItem('theme')) {
+            html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            updateIcon();
+          }
+        });
+      })();
     </script>
 
   </body>
