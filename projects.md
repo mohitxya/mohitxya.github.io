@@ -17,8 +17,8 @@ permalink: /projects/
     <p style="margin-top:4px; margin-bottom:6px;">
      A small LLM inference runtime I built to understand how model serving works under the hood - KV cache, scheduling, batching, streaming, and benchmarking.
     </p>
-    <a href="https://github.com/mohitxya/mini-vllm">(Github)</a>
-    <a href="https://github.com/yourusername/nystagmus-analyzer">(Blog)</a>
+    <a href="https://github.com/mohitxya/mini-vllm" target="_blank" rel="noopener">(Github)</a>
+    <a href="https://github.com/yourusername/nystagmus-analyzer"  target="_blank" rel="noopener">(Blog)</a>
   </div>
 </div>
 
@@ -34,7 +34,7 @@ permalink: /projects/
     <p style="margin-top:4px; margin-bottom:6px;">
      It checks your squat, bench, and deadlift form using pose landmarks and a Random Forest model. Gives live feedback & counts your reps. Trained on a custom dataset we collected in our college gym.
     </p>
-    <a href="https://github.com/yourusername/nystagmus-analyzer">(Github)</a>
-    <a href="https://github.com/yourusername/nystagmus-analyzer">(Blog)</a>
+    <a href="https://github.com/yourusername/nystagmus-analyzer" target="_blank" rel="noopener">(Github)</a>
+    <a href="https://github.com/yourusername/nystagmus-analyzer" target="_blank" rel="noopener">(Blog)</a>
   </div>
 </div>
