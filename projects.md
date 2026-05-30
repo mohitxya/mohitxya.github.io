@@ -13,11 +13,11 @@ permalink: /projects/
     style="width:100px; height:100px; object-fit:cover; float:left; margin-right:15px; border-radius:6px; margin-top:7px;">
 
   <div style="overflow:hidden;">
-    <strong>AI Weightlifting Coach</strong><br>
+    <strong>mini-vLLM</strong><br>
     <p style="margin-top:4px; margin-bottom:6px;">
-     Corrects your squat, bench press, and deadlift form using pose landmarks and a RandomForest model. It also gives real-time feedback and counts reps.
+     A small LLM inference runtime I built to understand how model serving works under the hood - KV cache, scheduling, batching, streaming, and benchmarking.
     </p>
-    <a href="https://github.com/yourusername/nystagmus-analyzer">(Github)</a>
+    <a href="https://github.com/mohitxya/mini-vllm">(Github)</a>
     <a href="https://github.com/yourusername/nystagmus-analyzer">(Blog)</a>
   </div>
 </div>
