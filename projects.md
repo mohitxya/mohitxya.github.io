@@ -32,11 +32,7 @@ permalink: /projects/
   <div style="overflow:hidden;">
     <strong>AI Weightlifting Coach</strong><br>
     <p style="margin-top:4px; margin-bottom:6px;">
-    <ul>
-      <li>Corrects squat, bench, and deadlift form using pose landmarks and Random Forest classification.</li>
-      <li>Provides real-time feedback with rep counting.</li>
-      <li>Trained on a custom dataset collected in my college gym.</li>
-    </ul>
+     It checks your squat, bench, and deadlift form using pose landmarks and a Random Forest model. It gives live feedback & counts your reps. Trained on a custom dataset we collected in our college gym.
     </p>
     <a href="https://github.com/yourusername/nystagmus-analyzer">(Github)</a>
     <a href="https://github.com/yourusername/nystagmus-analyzer">(Blog)</a>
