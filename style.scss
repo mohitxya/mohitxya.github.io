@@ -1,7 +1,4 @@
----
----
-
-@import "variables";
+--- --- @import "variables";
 
 html {
   font-size: 100%;
@@ -31,9 +28,19 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure,
 %vertical-rhythm {
   margin-bottom: 15px;
 }
@@ -46,7 +53,12 @@ ul, ol, dl, figure,
   width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 01em 0 15px;
   color: var(--text-heading);
   font-family: $sans-font-family;
@@ -56,22 +68,36 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 30px;
+
   a {
     color: inherit;
   }
 }
 
-h2 {font-size: 28px;}
+h2 {
+  font-size: 28px;
+}
 
-h3 {font-size: 24px;}
+h3 {
+  font-size: 24px;
+}
 
-h4 {font-size: 20px;}
+h4 {
+  font-size: 20px;
+}
 
-h5 {font-size: 16px;}
+h5 {
+  font-size: 16px;
+}
 
-h6 {font-size: 14px;}
+h6 {
+  font-size: 14px;
+}
 
-small, .text_small {font-size: 14px;}
+small,
+.text_small {
+  font-size: 14px;
+}
 
 a {
   color: $blue;
@@ -87,7 +113,8 @@ a {
   }
 }
 
-ul, ol {
+ul,
+ol {
   margin: 15px 0;
   padding-left: 30px;
 }
@@ -100,39 +127,45 @@ ol {
   list-style-type: decimal;
 }
 
-ol ul, ul ol, ul ul, ol ol {
+ol ul,
+ul ol,
+ul ul,
+ol ol {
   margin: 0;
 }
 
-ul ul, ol ul {
+ul ul,
+ol ul {
   list-style-type: circle;
 }
 
-em, i {
+em,
+i {
   font-style: italic;
 }
 
-strong, b {
+strong,
+b {
   font-weight: bold;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+  max-width: 100%;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-figure > img {
+figure>img {
   display: block;
 }
 
 figcaption {
-    font-size: 14px !important;
-    margin-top: -20px;
-    margin-bottom: 10px;
-    text-align: center;
-    color: var(--text-secondary);
+  font-size: 14px !important;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--text-secondary);
 }
 
 .gmnoprint img {
@@ -190,7 +223,7 @@ hr {
   font-weight: bold;
   color: var(--text-secondary);
   margin-bottom: 30px;
-  }
+}
 
 .no-comments {
   font-weight: bold;
@@ -199,7 +232,7 @@ hr {
 }
 
 .related-posts {
-  .related-posts-heading{
+  .related-posts-heading {
     margin: 0;
     padding: 0;
     font-weight: bold;
@@ -217,24 +250,24 @@ hr {
   margin-bottom: 35px;
   clear: both;
 
-    p {
-      .post-nav-label {
-        margin: 0;
-        padding: 0;
-        font-weight: bold;
-        color: var(--text-secondary);
-      }
-
-      &:first-child {
-        padding-right: auto;
-        float: left;
-      }
-
-      &:last-child {
-        padding-left: auto;
-        float: right;
-      }
+  p {
+    .post-nav-label {
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+      color: var(--text-secondary);
     }
+
+    &:first-child {
+      padding-right: auto;
+      float: left;
+    }
+
+    &:last-child {
+      padding-left: auto;
+      float: right;
+    }
+  }
 }
 
 .category-head {
@@ -246,6 +279,7 @@ hr {
   color: var(--selection-text);
   background: var(--selection-bg);
 }
+
 ::selection {
   color: var(--selection-text);
   background: var(--selection-bg);
@@ -263,7 +297,8 @@ blockquote {
     margin-bottom: 0;
   }
 
-  i, em {
+  i,
+  em {
     font-style: normal;
   }
 }
@@ -286,7 +321,7 @@ pre {
   padding: 08px 12px;
   overflow-x: auto;
 
-  > code {
+  >code {
     border: 0;
     padding-right: 0;
     padding-left: 0;
@@ -327,16 +362,20 @@ pre {
   isolation: isolate;
   font-family: $code-font-family !important;
 }
+
 .gist .markdown-body {
   padding: 15px;
 }
+
 .gist pre {
   padding: 0;
   background-color: transparent;
 }
+
 .gist .gist-file .gist-data {
   font-size: 15px !important;
 }
+
 .gist code {
   isolation: isolate;
   padding: 0;
@@ -352,7 +391,7 @@ table {
   overflow-x: auto;
   border: 01px solid var(--table-border);
 
-  & + table {
+  &+table {
     margin-top: 30px;
   }
 
@@ -362,7 +401,8 @@ table {
     }
   }
 
-  th, td {
+  th,
+  td {
     padding: 10px 15px;
   }
 
@@ -386,7 +426,7 @@ table {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-            -ms-overflow-style: -ms-autohiding-scrollbar;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
   }
 }
 
@@ -432,8 +472,8 @@ a[href^="#fnref:"] {
 }
 
 .site-avatar {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   margin-right: 15px;
 
   @include mobile {
@@ -471,6 +511,7 @@ a[href^="#fnref:"] {
       color: $mahogany !important;
       text-decoration: none;
     }
+
     &:visited {
       color: inherit;
     }
@@ -506,17 +547,19 @@ nav {
     font-weight: 400;
     letter-spacing: 01px;
 
-      &:hover {
-        color: inherit;
-        text-decoration: underline;
-      }
-      &:visited {
-        color: inherit;
-      }
-        @include mobile {
-          margin: 0 10px;
-          color: $blue;
-        }
+    &:hover {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: inherit;
+    }
+
+    @include mobile {
+      margin: 0 10px;
+      color: $blue;
+    }
   }
 }
 
@@ -530,22 +573,22 @@ a.nav-menu-item:focus {
 .clearfix:after {
   content: " ";
   display: table;
-  }
+}
 
 .clearfix:after {
   clear: both;
-  }
+}
 
 //
 // .main
 //
 
-.posts > .post {
+.posts>.post {
   padding-bottom: 02em;
   border-bottom: 01px solid var(--border-light);
 }
 
-.posts > .post:last-child {
+.posts>.post:last-child {
   padding-bottom: 01em;
   border-bottom: none;
 }
@@ -566,14 +609,14 @@ a.nav-menu-item:focus {
       text-decoration: none;
     }
 
-      &:visited {
-        color: $mahogany;
-      }
+    &:visited {
+      color: $mahogany;
+    }
 
-        &:hover {
-          color: $mahogany;
-          text-decoration: underline;
-        }
+    &:hover {
+      color: $mahogany;
+      text-decoration: underline;
+    }
   }
 
   .reading-time {
@@ -603,9 +646,9 @@ footer {
     padding: 0 04px;
     color: var(--text-secondary);
 
-      &:hover {
+    &:hover {
       color: var(--text-primary);
-      }
+    }
   }
 }
 
@@ -624,20 +667,20 @@ footer {
   justify-content: center;
   gap: .75rem;
   margin: 0 0 1rem;
-  
+
 }
 
 .topic-tab {
   appearance: none;
   background: transparent;
-  border: 0;                 // no pill/border
-  padding: 0;                // tight like links
+  border: 0; // no pill/border
+  padding: 0; // tight like links
   cursor: pointer;
   font: inherit;
-  color: var(--text-secondary);  // light color by default
-  
+  color: var(--text-secondary); // light color by default
+
   // add leading "# "
-  
+
 
   // add dot separator after each except last
   &:not(:last-child)::after {
@@ -646,30 +689,43 @@ footer {
     margin-left: .5rem;
   }
 
-  &:hover { color: var(--text-primary); text-decoration: none; }
-  &.active { color: var(--text-heading); font-weight: 600; }
-  &:focus-visible { outline: none; text-decoration: underline; }
+  &:hover {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  &.active {
+    color: var(--text-heading);
+    font-weight: 600;
+  }
+
+  &:focus-visible {
+    outline: none;
+    text-decoration: underline;
+  }
 }
 
-.cgz
-{
+.cgz {
   background-color: var(--cgz-bg);
   border-radius: 4px;
   padding: 0;
   font-size: 0.8em;
   color: var(--cgz-text);
 }
-.dgz
-{
+
+.dgz {
   background-color: var(--dgz-bg);
 }
-.metad
-{
+
+.metad {
   margin-left: 0.1em;
 }
+
 #posts-list ul {
-  list-style-type: circle; /* hollow bullets */
-  margin-left: 1.5em;      /* optional indentation */
+  list-style-type: circle;
+  /* hollow bullets */
+  margin-left: 1.5em;
+  /* optional indentation */
   padding-left: 0.5em;
 }
 
@@ -697,7 +753,7 @@ footer {
   line-height: 1;
   padding: 0;
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
 
   &:hover {
     transform: scale(1.1);
