@@ -9,7 +9,8 @@ permalink: /projects/
   <img src="/assets/image/projects/ai_coach.png" 
     alt="AI Weightlifting Coach" 
     width="100" 
-    style="float:left; margin-right:15px; border-radius:6px; margin-top:7px;">
+    height="100"
+    style="float:left; object-fit:cover; margin-right:15px; border-radius:6px; margin-top:7px;">
 
   <div style="overflow:hidden;">
     <strong>AI Weightlifting Coach</strong><br>
