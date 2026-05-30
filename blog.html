@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Blog
+title: blog
 permalink: /blog/
 ---
 
@@ -8,16 +8,16 @@ permalink: /blog/
 
 <div class="posts" id="posts-list">
   <ul>
-  {% for post in site.posts %}
-  <li>
-  <article class="post">
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> 
+    {% for post in site.posts %}
+    <li>
+      <article class="post">
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
         <span class="metad">
           <span class="cgz">({{post.categories | join: ", "}})</span>
           <span class="cgz dgz">({{ post.date | date: "%b %d, %Y" }})</span>
         </span>
-  </article>
-  </li>
-  {% endfor %}
+      </article>
+    </li>
+    {% endfor %}
   </ul>
 </div>

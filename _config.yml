@@ -30,13 +30,13 @@ baseurl: ""
 
 # Navigation menu
 navigation_links:
-  - title: About
+  - title: about
     url: /
 
-  - title: Blog
-    url: /blog/
+  - title: writing
+    url: /writing/
 
-  - title: Projects
+  - title: projects
     url: /projects/
 
   - title: <i class="fa fa-search"></i>
