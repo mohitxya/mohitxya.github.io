@@ -15,9 +15,9 @@
 
     {% seo title=false %}
     {% if page.title %}
-    <title>{{ page.title }}&#32;&#45;&#32;{{ site.description }}&#32;&#45;&#32;{{ site.title }}</title>
+    <title>{{ page.title }}</title>
     {% else %}
-    <title>{{ site.description }}&#32;&#45;&#32;{{ site.title }}</title>
+    <title>{{ site.title }}</title>
     {% endif %}
 
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css"/>
