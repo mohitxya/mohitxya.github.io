@@ -4,6 +4,22 @@ title: Projects
 permalink: /projects/
 ---
 
+<div style="overflow:auto; margin-bottom: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 1em;">
+  <img src="/assets/image/projects/GraphChat.png" 
+    alt="mini-vLLM" 
+    width="100" 
+    height="100"
+    style="width:100px; height:100px; object-fit:cover; float:left; margin-right:15px; border-radius:6px; margin-top:7px;">
+
+  <div style="overflow:hidden;">
+    <strong>GraphChat</strong><br>
+    <p style="margin-top:4px; margin-bottom:6px;">
+     The commonly used linear chat interface doesn't allow you to take quick detours. You can't highly a portion of the generated answer and then get right back instantly. This fixes that, it replaces the linear chat structure with a node based one. 
+    </p>
+    <a href="https://github.com/mohitxya/GraphChat" target="_blank" rel="noopener">(Github)</a>
+    <a href="https://github.com/yourusername/nystagmus-analyzer"  target="_blank" rel="noopener">(Blog)</a>
+  </div>
+</div>
 
 <div style="overflow:auto; margin-bottom: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 1em;">
   <img src="/assets/image/projects/mini_vllm.png" 
