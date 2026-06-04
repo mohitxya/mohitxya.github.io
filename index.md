@@ -21,4 +21,4 @@ I built this blog to quench some innate urge to categorize and organize my thoug
 3. BusDB (A Toy Database from the famous CMU 15-445)
 
 <b>currently reading:</b> 
-{% include goodreads-currently-reading.html %}
+{% include currently-reading.html %}
