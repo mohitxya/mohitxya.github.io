@@ -5,7 +5,7 @@ permalink: /projects/
 ---
 
 <div style="overflow:auto; margin-bottom: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 1em;">
-  <img src="/assets/image/projects/GraphChat.png" 
+  <img src="/assets/image/projects/graph.png" 
     alt="mini-vLLM" 
     width="100" 
     height="100"
