@@ -14,7 +14,7 @@ permalink: /projects/
   <div style="overflow:hidden;">
     <strong>GraphChat</strong><br>
     <p style="margin-top:4px; margin-bottom:6px;">
-     The commonly used linear chat interface doesn't allow you to take quick detours. You can't highly a portion of the generated answer and then get right back instantly. This fixes that, it replaces the linear chat structure with a node based one. 
+     The commonly used linear chat interface doesn't allow you to take quick detours.Copy pasting portion you couldn't understand back into chat interface adds friction. This fixes that, it replaces the linear chat structure with a node based one. 
     </p>
     <a href="https://github.com/mohitxya/GraphChat" target="_blank" rel="noopener">(Github)</a>
     <a href="https://github.com/yourusername/nystagmus-analyzer"  target="_blank" rel="noopener">(Blog)</a>
