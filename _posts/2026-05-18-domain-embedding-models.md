@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Building an MNIST Classifier from Scratch"
-categories: [Content, Demo]
+title: "RAG is only good as it's retriever"
+categories: [RAG, LLM, Information Retrieval]
 topic: technical
 ---
 
