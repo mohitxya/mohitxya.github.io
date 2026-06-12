@@ -4,7 +4,7 @@ title: "RAG is only good as it's retriever"
 categories: [RAG, LLM, Information Retrieval]
 topic: technical
 ---
-> This blog is work in progress and is being continually updated as I learn more about the topic. Follow my progress here: (GitHub)[https://github.com/mohitxya/domain-rag-retriever]
+> This blog is work in progress and is being continually updated as I learn more about the topic. Follow my progress here: [GitHub](https://github.com/mohitxya/domain-rag-retriever)
 
 - Before neural networks, search engines usually used **lexical retrieval**.
 
@@ -23,12 +23,13 @@ topic: technical
 - FAISS gives us fast similarity search over large collections of dense vectors. 
 - **Bag of Words model**: 
 	- `similarity = (A · B) / (|A| × |B|)`
-	- ![[attachments/Pasted image 20260611203425.png|443]]
+
 - **TF-IDF retrieval**:
 	- Term frequency and Inverse document frequency. 
 	- `TF("cat", doc) = count of "cat" in doc / total words in doc` (How often does the word appear in this document?)
 	- `IDF("cat") = log(total docs / docs containing "cat")` (How rare is the word across all documents?)
 	- `TF-IDF(word, doc) = TF × IDF`
+
 - **BM-25 retrieval**: 
 	- Best Matching.
 	- Builds upon TF-IDF and fixes some of it's weaknesses. 
@@ -40,6 +41,7 @@ topic: technical
 		- b is typically 0.75
 	- Formula: `BM25(word, doc) = IDF × [TF × (k1 + 1)] / [TF + k1 × (1 - b + b × (L / L_avg))]`
 	- `k1`: saturation control, `b`: length penalty strength, `L`: document length, `L_avg`: average doc length across corpus.
+
 - **Dense retrieval**: 
 	- Fixed size vectors. 
 	- Texts with similar meaning would have nearby vectors. 
@@ -48,6 +50,7 @@ topic: technical
 	- To get cosine behavior we would have to pre-normalize our vectors since it only does dot product. 
 	- Other options: `IndexIVFFlat`, `IndexHNSW`.
 - Embedding model is a neural network trained to compress text into a vector that preserves useful relationships. 
+
 #### Evaluation
 - A benchmark has query, expected relevant document and corpus of candidate documents. 
 - **Major benchmarks**: BIER (paper emphasizes that BM-25 remains a robust baseline and dense retrievers can underperform out of domain.)
@@ -57,6 +60,7 @@ topic: technical
 - General embedding models are trained on broad internet/text data. 
 - But your domain might have: medical terms, legal clauses, company-specific abbreviations, etc. 
 - fine-tuning teaches domain-specific mappings. 
+
 #### MNRL
 - **Multiple negatives ranking loss** trains on pairs: `(query, positive_document)`.
 - Correct score must be high, rest should be low. 
