@@ -5,7 +5,8 @@ categories: [RAG, LLM, Information Retrieval]
 topic: technical
 ---
 > This blog is work in progress and is being continually updated as I learn more about the topic. Follow my progress here: [GitHub](https://github.com/mohitxya/domain-rag-retriever)
-![Cute Golden Retriever](../assets/image/posts/dog_rag.png)
+
+![Cute Golden Retriever](/assets/image/posts/dog_rag.png)
 
 - Before neural networks, search engines usually used **lexical retrieval**.
 
