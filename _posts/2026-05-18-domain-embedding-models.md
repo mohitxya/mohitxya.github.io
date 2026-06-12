@@ -4,121 +4,84 @@ title: "RAG is only good as it's retriever"
 categories: [RAG, LLM, Information Retrieval]
 topic: technical
 ---
-
-Hello and welcome. The only purpose of this post is to greet you when your site comes alive for the first time.  
-This post will demonstrate some of the more common content & elements found in posts.  
-Feel free to delete this post when you are ready to publish your first post.  
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.
-
-## Some great heading (h2)
-
-Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu.
-<!--more--
-
-Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
-
-## Another great heading (h2)
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.
-
-### Some great subheading (h3)
-
-Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum.
-
-Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.
-
-### Some great subheading (h3)
-
-Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
-
-> This quote will *change* your life. It will reveal the <i>secrets</i> of the universe, and all the wonders of humanity. Don't <em>misuse</em> it.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt.
-
-### Some great subheading (h3)
-
-Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum.
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-#### You might want a sub-subheading (h4)
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-#### But it's probably overkill (h4)
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-##### Could be a smaller sub-heading, `pacman` (h5)
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-###### Small yet significant sub-heading  (h6)
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-### Highlight the code please!!
-
-{% highlight c %}
-float Q_rsqrt( float number )
-{
-	long i;
-	float x2, y;
-	const float threehalfs = 1.5F;
-
-	x2 = number * 0.5F;
-	y  = number;
-	i  = * ( long * ) &y;                       // evil floating point bit level hacking
-	i  = 0x5f3759df - ( i >> 1 );               // what the fuck? 
-	y  = * ( float * ) &i;
-	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
-//	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
-
-	return y;
-}
-{% endhighlight %}
-
-### Oh hai, an unordered list!!
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-- First item, yo
-- Second item, dawg
-- Third item, what what?!
-- Fourth item, fo sheezy my neezy
-
-### Oh hai, an ordered list!!
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-1. First item, yo
-2. Second item, dawg
-3. Third item, what what?!
-4. Fourth item, fo sheezy my neezy
-
-## Headings are cool! (h2)
-
-Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
-
-Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
-
-Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.
-
-### Tables
-
-Title 1               | Title 2               | Title 3               | Title 4
---------------------- | --------------------- | --------------------- | ---------------------
-lorem                 | lorem ipsum           | lorem ipsum dolor     | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-
-Title 1 | Title 2 | Title 3 | Title 4
---- | --- | --- | ---
-lorem | lorem ipsum | lorem ipsum dolor | lorem ipsum dolor sit
-lorem ipsum dolor sit amet | lorem ipsum dolor sit amet consectetur | lorem ipsum dolor sit amet | lorem ipsum dolor sit
-lorem ipsum dolor | lorem ipsum | lorem | lorem ipsum
-lorem ipsum dolor | lorem ipsum dolor sit | lorem ipsum dolor sit amet | lorem ipsum dolor sit amet consectetur
+> This blog is work in progress and is being continually updated as I learn more about the topic. Follow my progress here: (GitHub)[https://github.com/mohitxya/domain-rag-retriever]
+- Before neural networks, search engines usually used **lexical retrieval**.
+> lexical retrieval matches documents based on keywords. 
+- Earlier RAGs: Sparse word vectors (Huge dimensions, mostly zero).
+	- Bag of Words, BM25, TF-IDF, etc. 
+- Modern RAGs: Dense Neural Embedding (Mostly non-zero floats, smaller dimensions).
+	- Word2Vec, BERT, etc.
+- Search loop has remained same: 
+	- query vector
+	- compare against document vectors
+	- rank by similarity
+	- return top-k
+- Sentence-BERT made this neural retrieval style practical by producing sentence embeddings that can be compared with cosine similarity. [S-BERT](https://arxiv.org/abs/1908.10084)
+- FAISS gives us fast similarity search over large collections of dense vectors. 
+- **Bag of Words model**: 
+	- `similarity = (A · B) / (|A| × |B|)`
+	- ![[attachments/Pasted image 20260611203425.png|443]]
+- **TF-IDF retrieval**:
+	- Term frequency and Inverse document frequency. 
+	- `TF("cat", doc) = count of "cat" in doc / total words in doc` (How often does the word appear in this document?)
+	- `IDF("cat") = log(total docs / docs containing "cat")` (How rare is the word across all documents?)
+	- `TF-IDF(word, doc) = TF × IDF`
+- **BM-25 retrieval**: 
+	- Best Matching.
+	- Builds upon TF-IDF and fixes some of it's weaknesses. 
+	- Problem 1: TF grows unboundedly
+		- `TF_saturated = TF × (k1 + 1) / (TF + k1)`
+		- k1 is typically 1.2-2.0.
+	- Problem 2: Long documents get unfairly rewarded
+		- `TF_normalized = TF / (1 - b + b × (doc_length / avg_doc_length))`
+		- b is typically 0.75
+	- Formula: `BM25(word, doc) = IDF × [TF × (k1 + 1)] / [TF + k1 × (1 - b + b × (L / L_avg))]`
+	- `k1`: saturation control, `b`: length penalty strength, `L`: document length, `L_avg`: average doc length across corpus.
+- **Dense retrieval**: 
+	- Fixed size vectors. 
+	- Texts with similar meaning would have nearby vectors. 
+	- FAISS (Facebook AI Similarity Search) is a library built for one problem: Given a query vector, find the k most similar vectors from a giant collection - fast.
+	- `IndexFlatIP`: Highly optimized CUDA/C++ version. 
+	- To get cosine behavior we would have to pre-normalize our vectors since it only does dot product. 
+	- Other options: `IndexIVFFlat`, `IndexHNSW`.
+- Embedding model is a neural network trained to compress text into a vector that preserves useful relationships. 
+#### Evaluation
+- A benchmark has query, expected relevant document and corpus of candidate documents. 
+- **Major benchmarks**: BIER (paper emphasizes that BM-25 remains a robust baseline and dense retrievers can underperform out of domain.)
+- Metrics:
+	- `Recall@k`: Is the correct document somewhere in top k?
+	- `MRR@k`: Mean reciprocal rank, it rewards putting the answer early. (2nd place: 1/2, 3rd place: 1/3, etc)
+- General embedding models are trained on broad internet/text data. 
+- But your domain might have: medical terms, legal clauses, company-specific abbreviations, etc. 
+- fine-tuning teaches domain-specific mappings. 
+#### MNRL
+- **Multiple negatives ranking loss** trains on pairs: `(query, positive_document)`.
+- Correct score must be high, rest should be low. 
+- Cached MNRL lets us use a larger effective batch size without needing a huge GPU. 
+> Modify benchmarks with 5 harder paraphrased queries: 
+> 1. Which queries failed? 
+> 2. What was retrieved instead? 
+> 3. Was the failure lexical, semantic, or domain-specific? 
+- Failed query "What objective makes similar examples close in embedding space?".
+- D2 was retrieved instead. 
+- I feel the error was lexical. Since, D2 contained more similar words even though it wasn't the right answer. 
+> Reading: Sentence-BERT, FAISS, BEIR. 
+#### Data Processing for retrieval
+- Retrieval is often bottlenecked by chunk quality, not the embedding model. 
+- Retrieval systems retrieve units of texts, could call them chunks. 
+- Each chunk should be large enough to contain useful meaning, small enough to be specific, self-contained enough to mean something. 
+- Historical Context
+	- Classic search engines worked with web pages. 
+	- A page was the retrieval unit. 
+	- Modern RAG systems often work with chunks because LLM context windows and embedding models have limits.
+- Daft is a high performance data engine for AI and multimodal workloads. Raw text rows into clean training ready datasets.
+- Data leakage: If chunks 1–8 are in train and chunks 9–10 are in test, your test set is contaminated. The model has seen almost the same document during training.
+>Read Daft docs, README, chunking/ RAG reading, BEIR paper again. 
+#### Cached MNRL
+- For each query, every other positive document in the batch acts as negative. 
+- If batch size is 128, each query gets 127 in-batch negatives. 
+- large batch also means large GPU memory usage. 
+- Gradient accumulation over multiple batches doesn't work since a particular query may not get exposure to other negatives then. 
+- We want: large logical contrastive batch but small physical encoder batch.
+- It trades time for memory. 
+- A hard negative is a negative that looks relevant. 
