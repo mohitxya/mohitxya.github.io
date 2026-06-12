@@ -5,8 +5,11 @@ categories: [RAG, LLM, Information Retrieval]
 topic: technical
 ---
 > This blog is work in progress and is being continually updated as I learn more about the topic. Follow my progress here: (GitHub)[https://github.com/mohitxya/domain-rag-retriever]
+
 - Before neural networks, search engines usually used **lexical retrieval**.
+
 > lexical retrieval matches documents based on keywords. 
+
 - Earlier RAGs: Sparse word vectors (Huge dimensions, mostly zero).
 	- Bag of Words, BM25, TF-IDF, etc. 
 - Modern RAGs: Dense Neural Embedding (Mostly non-zero floats, smaller dimensions).
@@ -58,14 +61,18 @@ topic: technical
 - **Multiple negatives ranking loss** trains on pairs: `(query, positive_document)`.
 - Correct score must be high, rest should be low. 
 - Cached MNRL lets us use a larger effective batch size without needing a huge GPU. 
+
 > Modify benchmarks with 5 harder paraphrased queries: 
 > 1. Which queries failed? 
 > 2. What was retrieved instead? 
 > 3. Was the failure lexical, semantic, or domain-specific? 
+
 - Failed query "What objective makes similar examples close in embedding space?".
 - D2 was retrieved instead. 
 - I feel the error was lexical. Since, D2 contained more similar words even though it wasn't the right answer. 
+
 > Reading: Sentence-BERT, FAISS, BEIR. 
+
 #### Data Processing for retrieval
 - Retrieval is often bottlenecked by chunk quality, not the embedding model. 
 - Retrieval systems retrieve units of texts, could call them chunks. 
@@ -76,7 +83,9 @@ topic: technical
 	- Modern RAG systems often work with chunks because LLM context windows and embedding models have limits.
 - Daft is a high performance data engine for AI and multimodal workloads. Raw text rows into clean training ready datasets.
 - Data leakage: If chunks 1–8 are in train and chunks 9–10 are in test, your test set is contaminated. The model has seen almost the same document during training.
+
 >Read Daft docs, README, chunking/ RAG reading, BEIR paper again. 
+
 #### Cached MNRL
 - For each query, every other positive document in the batch acts as negative. 
 - If batch size is 128, each query gets 127 in-batch negatives. 
