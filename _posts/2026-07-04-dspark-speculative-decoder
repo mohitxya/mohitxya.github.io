@@ -13,7 +13,12 @@ Inference in LLMs usually means two stages: prefill and decode. In prefill you b
 
 Speculative decoding helps by making one expensive forward pass do work for multiple tokens instead of just a single token. We train a small draft model to predict several positions at once. Our main model simply verifies them over it's own distribution and drops them if they seem improbable. 
 
+### speculative decoding: brief survey
+Early draft models were autoregressive which meant they would condition each position on previously sampled tokens. The belief was their autoregressive nature would allow them to generate more meaningful draft tokens. Their drafting latency grows linearly with block size (number of draft tokens generated) and this forced researchers to use short blocks and shallow architectures. 
 
+Parallel drafters on the other hand predict each position independently, so they can't really model inter-token dependencies within a block. This makes them susceptible to a thing called "rapid acceptance decay": 
+
+> say, we predict 4 tokens (a, b, c and d). Token d could be a good guess for that position, but not necessariliy for the specific future created by tokens a, b and c. 
 
 They benchmarked Qwen3 (4B, 8B and 14B) and Gemma4-12B mainly in three domains: 
 1. Mathematical Reasoning 
