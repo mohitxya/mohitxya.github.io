@@ -30,6 +30,7 @@ Early draft models were autoregressive which meant they would condition each pos
 Parallel drafters on the other hand predict each position independently, so they can't really model inter-token dependencies within a block. This makes them susceptible to a thing called "rapid acceptance decay": 
 
 > say, we predict 4 tokens (a, b, c and d). Token d could be a good guess for that position, but not necessariliy for the specific future created by tokens a, b and c. 
+
 - mention the formula
 - talk about semi autoregressive generation
 #### DFlash
