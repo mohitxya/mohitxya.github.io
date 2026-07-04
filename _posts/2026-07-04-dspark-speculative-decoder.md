@@ -53,7 +53,7 @@ This does make them susceptible to a thing called "rapid acceptance decay":
 
  DSpark adds a light-weight sequential block on top of a particular type of parallel drafter architecture (DFlash) making it a "Semi-autoregressive" drafter. 
 
-#### DFlash
+### DFlash
 
 It was released earlier this year and is a parallel drafter. For the parallel generation to work, it uses the big target model's hidden states as guidance. When the target model processes the prompt, its internal hidden representations contain rich information about the context and even hints about possible future tokens. DFlash extracts hidden features from several layers of the target model, fuses them, and feeds them into the draft model.
 
