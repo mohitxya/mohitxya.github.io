@@ -25,7 +25,7 @@ $acceptance probability = min(1, p_t^k(x_k) / p_d^k(x_k))$
 
 Early draft models were autoregressive which meant they would condition each position on previously sampled tokens. The belief was that their autoregressive nature would allow them to generate more meaningful draft tokens. Their drafting latency grows linearly with block size (number of draft tokens generated) and this forced researchers to use short blocks and shallow architectures. 
 
-> Logically one would conclude that autoregressive models create higher quality draft tokens but what ends up happening in practice is this: their sequential nature forces them to be shallow (mapping connections is expensive!). Parallel or semi-autoregressive drafters can afford more architectural capacity, and that extra capacity can outweigh the lack of full autoregressive dependency. Bummer. 
+> Logically one would conclude that autoregressive models (like Eagle3) create higher quality draft tokens but what ends up happening in practice is this: their sequential nature forces them to be shallow (mapping connections is expensive!). Parallel or semi-autoregressive drafters can afford more architectural capacity, and that extra capacity can outweigh the lack of full autoregressive dependency. Bummer. 
 
 Parallel drafters on the other hand predict each position independently, so they can't really model inter-token dependencies within a block. This makes them susceptible to a thing called "rapid acceptance decay": 
 
