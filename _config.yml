@@ -60,7 +60,7 @@ footer_links:
 #copyright: "This site is made with <3 by *me, myself, and I*."
 
 # Time zone
-timezone: null
+timezone: Asia/Kolkata
 
 # Excerpt separator
 excerpt_separator: <!--more-->
