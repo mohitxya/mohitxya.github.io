@@ -17,7 +17,7 @@ Speculative decoding helps by making one expensive forward pass do work for mult
 
 Put more formally, Speculative decoding accelerates the inference of a target model $M_{T}$ using a lightweight model $M_{d}$. At each decoding cycle, the draft model proposes $\lambda$ candidate tokens. The target model verifies all candidates in a single forward pass, accepting the longest prefix consistent with its own distribution. 
 
-$acceptance probability = min(1, p_t^k(x_k) / p_d^k(x_k))$
+$\text{acceptance probability} = min(1, p_t^k(x_k) / p_d^k(x_k))$
 
 > For the draft token $x_k$ at position k, how willing is the target model to accept it compared to how likely the drafter thought it was?
 
