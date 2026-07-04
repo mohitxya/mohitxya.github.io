@@ -4,6 +4,8 @@ title: "DSpark: how does it work?"
 categories: [Speculative decoder, LLM, Inference]
 topic: technical
 ---
+![Cute Golden Retriever](/assets/image/posts/dspark/dspark_thumb.png)
+
 In line with my recent fascination with inference, I've been catching up on some of the latest work in the area. 
 Deepseek's DSpark was released earlier this week and caught my eye since it achieves really remarkable acceleration in LLM inference (boosts single-user generation speeds by 60% to 85%! crazy). Building on traditional approaches to speculative 
 decoding, it has introduced some very interesting changes which I want to talk about after I lay down some initial ground-work on the theoretical background. 
