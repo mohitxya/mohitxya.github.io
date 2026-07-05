@@ -73,8 +73,12 @@ response: r1 r2 r3 r4 r5 r6 ...
 
 ```
 r1 [MASK] [MASK] [MASK]
+
+we try to predict the three mask tokens
+
+x0 x1 x2
 ```
-- The model learns to predict the masked tokens in parallel. 
+- The model learns to predict the masked tokens in parallel. So essentially you get logtis for several draft tokens in parallel. For every position k, you get the model's distribution of what tokens are likely (similar to vanilla LLM inderence). 
 
 The DFlash implementation: [github](https://github.com/z-lab/dflash)
 
@@ -86,13 +90,30 @@ We can see how the concepts are implemented (quick example):
 - `target_hidden` in case you didn't notice is the hidden representation we talked about.  
 
 ### what DSpark brings to the table? 
-- Minor modification to DFlash
-- talk about sequential temperature scaling
-#### Sequential stage
-#### Confidence-scheduled verificaion
-#### Hardawre aware prefix scheduler
+In DSpark, a parallel backbone (DFlash) handles the bulk of draft computation. This keeps $T_{draft}$ nearly independed of $\lambda$.  A lightweight sequential block (Markov head + RNN head, we'll talk more about them soon!) then injects dependency among draft tokens, improving $\tau$ at minimal additional latency. 
 
-### Results 
+> Recall $\tau$: number of accepted tokens per-cycle
+
+In addition to this, a confidence head estimates per-position acceptance probabilites, and a hardware aware scheduler uses this to get rid of low confidence-suffix tokens.
+
+- Under light load: extra verification token is cheap, it may verify longer prefixes, even if later tokens are somewhat risky. 
+- Under heavy load: extra verification token is expensive. So shorter prefixes. 
+
+Before we dive deeper into the individual components, let's organize our mental model: 
+- Parallel Stage: DFlash; slightly modified.
+- Sequential Stage: Somewhat conditions generated tokens on previous one.
+- Confidence: Gives us the probability of the token being accepted. Now our scheduler can look at this and the hardware utilization and determine whether it wants to take the chance or not. 
+- Hardware aware prefix scheduler: Looks at confidence and hardware utilization to determine prefix length (Upto what point shall it accept tokens).
+
+#### Parallel part
+It's practically DFlash. The only thing that changes is: 
+
+Instead of feeding an anchor token and predicting only the mask positions. We treat the anchor itself as the first prediction position. So, $\lambda$ input tokens yield $\lambda$ draft tokens. 
+
+![anchor and block size](/assets/image/posts/dspark/anchor_new.png)
+
+#### Sequential part
+Remember the base logits are parallel model generates? (for positon 0, we get a vector containing raw scores for all tokens.) This stage supplements them with a prefix-dependent trasition bias $B_{k}$
 
 ### Where are we headed? 
 
