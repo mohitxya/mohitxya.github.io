@@ -7,8 +7,10 @@ topic: technical
 ![DSpark thumbnail](/assets/image/posts/dspark/dspark_thumb.png)
 
 In line with my recent fascination with inference, I've been catching up on some of the latest work in the area. 
-Deepseek's DSpark was released earlier this week and caught my eye since it achieves really remarkable acceleration in LLM inference (boosts single-user generation speeds by 60% to 85%! crazy). Building on traditional approaches to speculative 
-decoding, it has introduced some very interesting changes which I want to talk about after I lay down some initial ground-work on the theoretical background. 
+Deepseek's DSpark was released earlier this week and caught my eye since it achieves really remarkable acceleration in LLM inference (boosts single-user generation speeds by 60% to 85%!). 
+
+Building on traditional approaches to speculative 
+decoding, it has introduced some very interesting changes which I want to talk about after I lay down some initial ground-work on speculative decoders in general. 
 
 ### the inference bottleneck: why bother? 
 Inference in LLMs usually means two stages: prefill and decode. In prefill you build up the KV cache. 
@@ -19,7 +21,7 @@ Inference in LLMs usually means two stages: prefill and decode. In prefill you b
 - Calculates its Softmax. 
 - Multiplies each word's value vector with this softmax percentage
 
-KV Cache just allows you to skip this tedius calculation and skip re-computation for every token in your sequence. 
+KV Cache just allows you to skip this tedious calculation and skip re-computation for every token in your sequence. 
 
 Caching the Keys and Values for a given prompt did solve a major bottleneck in computation. But, we still end up loading all the model weights during forward pass for every single token. From GPU VRAM/HBM to GPU compute cores. The GPU obviously can't keep all model weights inside fast on-chip memory (It's expensive so to make it work economically, it's kept relatively small).
 
@@ -80,7 +82,7 @@ we try to predict the three mask tokens
 
 x0 x1 x2
 ```
-- The model learns to predict the masked tokens in parallel. So essentially you get logtis for several draft tokens in parallel. For every position k, you get the model's distribution of what tokens are likely (similar to vanilla LLM inderence). 
+- The model learns to predict the masked tokens in parallel. So essentially you get logits for several draft tokens in parallel. For every position k, you get the model's distribution of what tokens are likely (similar to vanilla LLM inference). 
 
 The DFlash implementation: [github](https://github.com/z-lab/dflash)
 
@@ -92,7 +94,7 @@ We can see how the concepts are implemented (quick example):
 - `target_hidden` in case you didn't notice is the hidden representation we talked about.  
 
 ### what DSpark brings to the table? 
-In DSpark, a parallel backbone (DFlash) handles the bulk of draft computation. This keeps $T_{draft}$ nearly independed of $\lambda$.  A lightweight sequential block (Markov head + RNN head, we'll talk more about them soon!) then injects dependency among draft tokens, improving $\tau$ at minimal additional latency. 
+In DSpark, a parallel backbone (DFlash) handles the bulk of draft computation. This keeps $T_{draft}$ nearly independent of $\lambda$.  A lightweight sequential block (Markov head + RNN head, we'll talk more about them soon!) then injects dependency among draft tokens, improving $\tau$ at minimal additional latency. 
 
 > Recall $\tau$: number of accepted tokens per-cycle
 
@@ -117,7 +119,7 @@ Instead of feeding an anchor token and predicting only the mask positions. We tr
 ![anchor and block size](/assets/image/posts/dspark/anchor_new.png)
 
 #### Sequential part
-Remember the base logits are parallel model generates? (for positon 0, we get a vector containing raw scores for all tokens.) This stage supplements them with a prefix-dependent trasition bias $B_{k}$. 
+Remember the base logits are parallel model generates? (for positon 0, we get a vector containing raw scores for all tokens.) This stage supplements them with a prefix-dependent transition bias $B_{k}$. 
 
 what that means essentially is, we add bias to logits and re-normalize and calculate the softmax so on. How we get the bias is what this section is all about. 
 
@@ -138,7 +140,7 @@ $B(x_{k-1},.)=W1[x_{k-1}]W2$
 self.markov_w1 = nn.Embedding(self.vocab_size, self.markov_rank)
 self.markov_w2 = nn.Linear(self.markov_rank, self.vocab_size, bias=False)
 ```
-- as seen in the source code for dspark. (github)[https://github.com/deepseek-ai/DeepSpec]
+- as seen in the source code for dspark. [github](https://github.com/deepseek-ai/DeepSpec)
 
 ```python
 return logits + self.compute_step_bias(token_ids, hidden_states)
@@ -191,9 +193,9 @@ def project_bias(self, latent_states):
 Finally add bias to the base logits. 
 
 #### Confidence head
-This saves us resources by only forwarding tokens with positive expected returns. DSpark couples a **confidence head** that predicts prefix survival probabilites, with a **hardware-aware prefix scheduler**.
+This saves us resources by only forwarding tokens with positive expected returns. DSpark couples a **confidence head** that predicts prefix survival probabilities, with a **hardware-aware prefix scheduler**.
 
-For each draft position k. $c_{k} models the conditional probability (gives a number between 0 and 1) that the draft token at position k will survive target verification, given that all the tokens before in the block have been accepted. 
+For each draft position k. $c_{k}$ models the conditional probability (gives a number between 0 and 1) that the draft token at position k will survive target verification, given that all the tokens before in the block have been accepted. 
 
 the models estimated prediction of success: 
 
