@@ -125,7 +125,8 @@ what that means essentially is, we add bias to logits and re-normalize and calcu
 
 Now there are two ways to make this sequential head work (get the bias), two different instantiations if you will: 
 
-1. **Markov head**: It restricts $B_{k}$ to depend only on the immediately preceding token, reducing it to a first order transition. 
+##### Markov head:
+It restricts $B_{k}$ to depend only on the immediately preceding token, reducing it to a first order transition. 
 
 Given the preceding token $x_{k-1}$, the transition bias for position k is: 
 
@@ -147,7 +148,8 @@ return logits + self.compute_step_bias(token_ids, hidden_states)
 ```
 - it's added to the logits. 
 
-2. **RNN head**: maintains a recurrent state $s_k$ that accumulates the full prefix history within a block. 
+##### RNN head: 
+maintains a recurrent state $s_k$ that accumulates the full prefix history within a block. 
 
 So at each step, the module concatenates:
 - the current state
