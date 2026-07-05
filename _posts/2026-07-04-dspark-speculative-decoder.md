@@ -115,6 +115,31 @@ Instead of feeding an anchor token and predicting only the mask positions. We tr
 #### Sequential part
 Remember the base logits are parallel model generates? (for positon 0, we get a vector containing raw scores for all tokens.) This stage supplements them with a prefix-dependent trasition bias $B_{k}$
 
+Now there are two ways to make this sequential head work, two different instantiations if you will: 
+
+1. Markov head: It restricts $B_{k}$ to depend only on the immediately preceding token, reducing it to a first order transition. 
+
+Given the preceding token $x_{k-1}$, the transition bias for position k is: 
+
+$B(x_{k-1},.)=W1[x_{k-1}]W2$
+
+- In principle it would be a full `vocab size x vocab size` matrix but that can be very large.
+- W1: has V rows, each of length r. For example, Row b is a learned vector that answers "if previous token is `b`, what does that imply about what comes next?"
+- W2: has one row per latent dimension and one column per vocab word (r rows, V columns). Column `a` answers "how much does each of the r latent factors push this word's logit up or down?"
+
+>
+```python
+self.markov_w1 = nn.Embedding(self.vocab_size, self.markov_rank)
+self.markov_w2 = nn.Linear(self.markov_rank, self.vocab_size, bias=False)
+```
+- as seen in the source code for dspark. (github)[https://github.com/deepseek-ai/DeepSpec]
+
+```python
+return logits + self.compute_step_bias(token_ids, hidden_states)
+```
+- it's added to the logits. 
+
+2. RNN head: maintains a recurrent state $s_k$ that accumulates the full prefix history within a block. So at each step, the module concatenates the current state, the previous token embedding and the backbone hidden $h_k$ into an input vector and then applies a single gated update
 ### Where are we headed? 
 
 I'm super new to this world of inference optimization, but I do wonder if speedups like DSpark, DFlash, MTP, etc might get us to a point where model spillover to the RAM (CPU) is more tolerable. It may make offloading more practical by giving the system extra time to prefetch/compress/prepare future KV-cache data.
