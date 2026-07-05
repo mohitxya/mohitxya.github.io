@@ -59,6 +59,8 @@ It was released earlier this year and is a parallel drafter. For the parallel ge
 
 Instead of only adding target features to the input embeddings, DFlash injects target features into the Key and Value cache of every draft layer.
 
+![DFlash](/assets/image/posts/dspark/dflash.png)
+
 - Input fusion: Gives the draft model target info once at the beginning. 
 - KV injection: Keeps the target info available inside every draft layer. 
 
@@ -100,10 +102,10 @@ In addition to this, a confidence head estimates per-position acceptance probabi
 - Under heavy load: extra verification token is expensive. So shorter prefixes. 
 
 Before we dive deeper into the individual components, let's organize our mental model: 
-- Parallel Stage: DFlash; slightly modified.
-- Sequential Stage: Somewhat conditions generated tokens on previous one.
-- Confidence: Gives us the probability of the token being accepted. Now our scheduler can look at this and the hardware utilization and determine whether it wants to take the chance or not. 
-- Hardware aware prefix scheduler: Looks at confidence and hardware utilization to determine prefix length (Upto what point shall it accept tokens).
+- **Parallel Stage**: DFlash; slightly modified.
+- **Sequential Stage**: Somewhat conditions generated tokens on previous one.
+- **Confidence**: Gives us the probability of the token being accepted. Now our scheduler can look at this and the hardware utilization and determine whether it wants to take the chance or not. 
+- **Hardware aware prefix scheduler**: Looks at confidence and hardware utilization to determine prefix length (Upto what point shall it accept tokens).
 
 ![DSpark Architecture](/assets/image/posts/dspark/arch.png)
 
