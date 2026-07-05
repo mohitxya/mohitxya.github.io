@@ -113,11 +113,13 @@ Instead of feeding an anchor token and predicting only the mask positions. We tr
 ![anchor and block size](/assets/image/posts/dspark/anchor_new.png)
 
 #### Sequential part
-Remember the base logits are parallel model generates? (for positon 0, we get a vector containing raw scores for all tokens.) This stage supplements them with a prefix-dependent trasition bias $B_{k}$
+Remember the base logits are parallel model generates? (for positon 0, we get a vector containing raw scores for all tokens.) This stage supplements them with a prefix-dependent trasition bias $B_{k}$. 
 
-Now there are two ways to make this sequential head work, two different instantiations if you will: 
+what that means essentially is, we add bias to logits and re-normalize and calculate the softmax so on. How we get the bias is what this section is all about. 
 
-1. Markov head: It restricts $B_{k}$ to depend only on the immediately preceding token, reducing it to a first order transition. 
+Now there are two ways to make this sequential head work (get the bias), two different instantiations if you will: 
+
+1. **Markov head**: It restricts $B_{k}$ to depend only on the immediately preceding token, reducing it to a first order transition. 
 
 Given the preceding token $x_{k-1}$, the transition bias for position k is: 
 
@@ -139,7 +141,121 @@ return logits + self.compute_step_bias(token_ids, hidden_states)
 ```
 - it's added to the logits. 
 
-2. RNN head: maintains a recurrent state $s_k$ that accumulates the full prefix history within a block. So at each step, the module concatenates the current state, the previous token embedding and the backbone hidden $h_k$ into an input vector and then applies a single gated update
+2. **RNN head**: maintains a recurrent state $s_k$ that accumulates the full prefix history within a block. 
+
+So at each step, the module concatenates:
+- the current state
+- the previous token embedding 
+- backbone hidden state: hidden states are the vectors right before the final vocab projection. 
+
+put mathematically: 
+
+$z_k​=[s_k−1​;W1​[x_{k−1​}];h_k​]$
+
+```python
+z = torch.cat([state, prev_embeddings, hidden_states], dim=-1)
+# as seen in the source code. (all the link are available in the reference btw)
+proj = self.joint_proj(z)
+gate_raw, candidate_raw, output_raw = proj.chunk(3, dim=-1)
+```
+
+then it updates memory using a gate: 
+
+$s_k = g_k \odot s_{k-1} + (1 - g_k) \odot \tilde{s}_k$
+
+where: 
+
+$g_k = \sigma(W_g z_k)$
+
+$\tilde{s}_k = \tanh(W_c z_k)$
+
+```python
+new_state = gate * state + (1.0 - gate) * candidate
+```
+
+> This essentially means, if gate is high keep old memory and if it's low write new memory. 
+
+Then, produce the vocab balance: $B_k(x_{<k}, \cdot) = W_2^\top \tanh(W_o z_k),$
+
+```python
+bias = self.project_bias(torch.tanh(output_raw))
+
+def project_bias(self, latent_states):
+    return self.markov_w2(latent_states)
+# markov_w2 maps the small latent vector into a full vocab-sized bias
+```
+Finally add bias to the base logits. 
+
+#### Confidence head
+This saves us resources by only forwarding tokens with positive expected returns. DSpark couples a **confidence head** that predicts prefix survival probabilites, with a **hardware-aware prefix scheduler**.
+
+For each draft position k. $c_{k} models the conditional probability (gives a number between 0 and 1) that the draft token at position k will survive target verification, given that all the tokens before in the block have been accepted. 
+
+the models estimated prediction of success: 
+
+$c_k = \sigma(w^\top[h_k; W_1[x_{k-1}]])$
+
+to supervise confidence heads during traning we use: 
+
+$c_k^* = 1 - \frac{1}{2}\|p_k^d - p_k^t\|_1$
+
+(difference between probability distribution of the draft model and the target model)
+
+Since, we are not using a threshold based approach just knowing a value between 0 and 1 is not enough. We need the absolute magnitudes of the cumulative acceptance probabilites to compute the expected acceptance length. 
+
+The paper talks about how raw estimates are often overconfident and would distort our estimation. So they introduce "Sequential temperature scaling" (STS). 
+
+survival of prefix up to k = c1 x c2 x ... x ck
+
+What STS does: 
+- Looks at a position and find a single number (Temperature) that you divide with c1's (say) logit before applying sigmoid. 
+- It's chosen so that the resulting c1 matches the empirical survival state we actually observe on the validation set. 
+- Repeat through position $\lambda$.
+
+Temperature scaling is just squashing/stretching the sigmoid curve. It does not flip the order. 
+
+#### Hardware aware prefix scheduler
+I'll try to describe the algorithm: 
+
+1. For every user and every position calculate the prefix survival probabilities. 
+
+```
+example: a1 a2 a3
+a1=0.83
+a2 (a1 a2)=0.61
+a3 (a1 a2 a3)=0.32
+```
+2. Now collect all candidate prefix tokens from all active requests and sort them. Highest would come first obviously. 
+
+3. Add verification tokens one by one and check throughput
+
+4. Stop when adding another token hurts throughput. 
+
+How do we no it would hurt the throughput? 
+$\[ \Theta = \tau \cdot \mathrm{SPS}(B) \]$
+
+essentially we would check it before and after adding the token. This is measured beforehand by profiling the engine. So it's basically a cheap lookup during the actual process. 
+
+#### So how well does it ACTUALLY work? 
+- They evaulate it on four target models spanning different scales and model families: Qwen3 -(4B, 8B, and 14B) and gemma4-12B. 
+- DSpark is compared with two representative drafters: DFlash and Eagle3. 
+- Evaluation protocol: 
+	- Mathematical reasoning: GSM8K, MATH500, AIME25
+	- Code generation: MBPP, HumanEval, Live-CodeBench
+	- Daily Chat: MT-Bench, Alpaca and Arena-Hard. 
+- The specifics are well presented in the paper so I'd encourage you to read that. (All links in the references section)
+
+I'll just focus on the cool findings: 
+- Across the Qwen3-4B,8B,and14B models, DSpark improves the macro-average accepted length over Eagle3 by 30.9%, 26.7% and 30.0% respectively. 
+- Similarly, compared to DFlash, DSpark yields relative improvements of 16.3%, 18.4% and 18.3% across the three scales. 
+- As shown in the following table: DSpark outperforms the other two at every draft position across all domains: 
+
+![table 1](/assets/image/posts/dspark/acceptance.png)
+
+> You can also see the rapid acceptance decay in action for DFlash! So basically DSpark inherits high initial acceptance of a deep parallel drafter and simultaneously its sequential head mitigates the decay which is typical of parallel generation. 
+
+- A 2-layer DSpark outperforms 5-layer DFlash across all domains!
+
 ### Where are we headed? 
 
 I'm super new to this world of inference optimization, but I do wonder if speedups like DSpark, DFlash, MTP, etc might get us to a point where model spillover to the RAM (CPU) is more tolerable. It may make offloading more practical by giving the system extra time to prefetch/compress/prepare future KV-cache data.
