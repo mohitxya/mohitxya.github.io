@@ -105,6 +105,8 @@ Before we dive deeper into the individual components, let's organize our mental 
 - Confidence: Gives us the probability of the token being accepted. Now our scheduler can look at this and the hardware utilization and determine whether it wants to take the chance or not. 
 - Hardware aware prefix scheduler: Looks at confidence and hardware utilization to determine prefix length (Upto what point shall it accept tokens).
 
+![DSpark Architecture](/assets/image/posts/dspark/arch.png)
+
 #### Parallel part
 It's practically DFlash. The only thing that changes is: 
 
@@ -215,7 +217,7 @@ What STS does:
 Temperature scaling is just squashing/stretching the sigmoid curve. It does not flip the order. 
 
 #### Hardware aware prefix scheduler
-I'll try to describe the algorithm: 
+The algorithm essentially follows the following steps:  
 
 1. For every user and every position calculate the prefix survival probabilities. 
 
@@ -231,8 +233,9 @@ a3 (a1 a2 a3)=0.32
 
 4. Stop when adding another token hurts throughput. 
 
-How do we no it would hurt the throughput? 
-$\[ \Theta = \tau \cdot \mathrm{SPS}(B) \]$
+How do we know if it would hurt the throughput? 
+
+$\\Theta = \tau \cdot \mathrm{SPS}(B) \$
 
 essentially we would check it before and after adding the token. This is measured beforehand by profiling the engine. So it's basically a cheap lookup during the actual process. 
 
@@ -263,7 +266,7 @@ I'm super new to this world of inference optimization, but I do wonder if speedu
 When KV cache is the bottle-neck, this paper ([QuantSpec](https://arxiv.org/abs/2502.10424?utm_source=chatgpt.com)) introduces a pretty cool idea: the draft model shares the architecture of the target model but employs a hierarchical 4-bit quantized KV cache and 4-bit quantized weights for acceleration (haven't read the paper properly yet). 
 
 ### References
-1. DSpark paper: https://www.alphaxiv.org/abs/2026.dspark
-2. DFlash paper: https://arxiv.org/abs/2602.06036
-3. Deepseek deepspec repository: https://github.com/deepseek-ai/DeepSpec
-4. Z-lab's DFlash repository: https://github.com/z-lab/dflash
+1. [DSpark paper](https://www.alphaxiv.org/abs/2026.dspark)
+2. [DFlash paper](https://arxiv.org/abs/2602.06036)
+3. [Deepseek deepspec repository](https://github.com/deepseek-ai/DeepSpec)
+4. [Z-lab's DFlash repository](https://github.com/z-lab/dflash)
