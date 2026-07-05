@@ -1,1 +1,1 @@
-This is a simple blogging site powered by "Forever Jekyll". 
+This is a simple blogging site I built using "Forever Jekyll". 
