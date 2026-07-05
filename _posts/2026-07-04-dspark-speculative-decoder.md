@@ -262,3 +262,8 @@ I'm super new to this world of inference optimization, but I do wonder if speedu
 
 When KV cache is the bottle-neck, this paper ([QuantSpec](https://arxiv.org/abs/2502.10424?utm_source=chatgpt.com)) introduces a pretty cool idea: the draft model shares the architecture of the target model but employs a hierarchical 4-bit quantized KV cache and 4-bit quantized weights for acceleration (haven't read the paper properly yet). 
 
+### References
+1. DSpark paper: https://www.alphaxiv.org/abs/2026.dspark
+2. DFlash paper: https://arxiv.org/abs/2602.06036
+3. Deepseek deepspec repository: https://github.com/deepseek-ai/DeepSpec
+4. Z-lab's DFlash repository: https://github.com/z-lab/dflash
