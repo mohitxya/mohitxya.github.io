@@ -225,7 +225,7 @@ Temperature scaling is just squashing/stretching the sigmoid curve. It does not 
 #### Hardware aware prefix scheduler
 The algorithm essentially follows the following steps:  
 
-1. For every user and every position calculate the prefix survival probabilities. 
+- For every user and every position calculate the prefix survival probabilities. 
 
 ```
 example: a1 a2 a3
@@ -233,11 +233,12 @@ a1=0.83
 a2 (a1 a2)=0.61
 a3 (a1 a2 a3)=0.32
 ```
-2. Now collect all candidate prefix tokens from all active requests and sort them. Highest would come first obviously. 
 
-3. Add verification tokens one by one and check throughput
+- Now collect all candidate prefix tokens from all active requests and sort them. Highest would come first obviously. 
 
-4. Stop when adding another token hurts throughput. 
+- Add verification tokens one by one and check throughput
+
+- Stop when adding another token hurts throughput. 
 
 How do we know if it would hurt the throughput? 
 
