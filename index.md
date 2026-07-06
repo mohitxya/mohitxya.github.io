@@ -10,7 +10,7 @@ I'm <e>Mohit<e>.
 
 I build AI systems and products across the stack. This blog is my public notebook for organizing what I’m learning about deep learning research, LLM inference, Computer Architecture and low-level optimization. Basically, anything I find cool.
 
-Also a huge grappling nerd, so when I’m not sitting in front of my laptop, you’ll probably find me at a local wrestling or judo club. I’d love to get into BJJ eventually too (sadly, no clubs around ;( ).
+Also a huge grappling nerd, so when I’m not sitting in front of my laptop, you’ll probably find me at the local wrestling or judo club. I’d love to get into BJJ eventually too (sadly, no clubs around ;( ).
 
 <b>what excites me:<b>
 1. Computer Architecture
