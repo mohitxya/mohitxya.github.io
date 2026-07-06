@@ -3,15 +3,12 @@ layout: default
 title: About
 permalink: /
 ---
-<img 
-  src="/assets/image/home_art.png" 
-  alt="type 2 civilization" 
-  style="height: 260px; width: 100%; object-fit: cover;"
->
+
+![type 2 civilization](/assets/image/home_art.png){: style="height:260px; width:100%; object-fit:cover;" }
 
 I'm <e>Mohit<e>. 
 
-I build AI systems and products across the stack. This blog is my public notebook for organizing what I’m learning about deep learning research, LLM inference, Computer Architecture and low-level optimization. Basically, anything I find cool or interesting insights. 
+I build AI systems and products across the stack. This blog is my public notebook for organizing what I’m learning about deep learning research, LLM inference, Computer Architecture and low-level optimization. Basically, anything I find cool.
 
 Also a huge grappling nerd, so when I’m not sitting in front of my laptop, you’ll probably find me at a local wrestling or judo club. I’d love to get into BJJ eventually too (sadly, no clubs around ;( ).
 
@@ -25,4 +22,4 @@ Also a huge grappling nerd, so when I’m not sitting in front of my laptop, you
 2. CS336 (It's a really cool stanford course on SOTA Language models)
 3. Got into diffusion models. So math behind them. 
 
-<b>currently reading:</b> My [Goodreads](https://www.goodreads.com/user/show/65327213-mohit-acharya)
+<b>currently reading:</b> Check out [Goodreads](https://www.goodreads.com/user/show/65327213-mohit-acharya)!
