@@ -235,9 +235,7 @@ a3 (a1 a2 a3)=0.32
 ```
 
 - Now collect all candidate prefix tokens from all active requests and sort them. Highest would come first obviously. 
-
 - Add verification tokens one by one and check throughput
-
 - Stop when adding another token hurts throughput. 
 
 How do we know if it would hurt the throughput? 
