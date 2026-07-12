@@ -6,7 +6,7 @@ permalink: /
 
 ![type 2 civilization](/assets/image/home_art.png){: style="height:260px; width:100%; object-fit:cover;" }
 
-# I'm <e>Mohit<e>. 
+I'm <e>Mohit<e>. 
 
 I build <span class="gold">AI systems</span> and products across the stack. This blog is my public notebook for organizing what I’m learning about in <span class="lavender">deep learning</span>, <span class="lavender">LLM inference</span>, <span class="cyan">Computer Architecture</span> and <span class="cyan">low-level optimization</span>. Basically, anything I find cool.
 
