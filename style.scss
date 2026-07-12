@@ -784,7 +784,27 @@ footer {
 .lavender-heading {
   color: #b58adf;
 }
+.intro-title {
+  position: relative;
+  margin: 1.8rem 0 1.2rem;
+  padding-left: 1rem;
 
+  font-size: 1.7rem;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.intro-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+
+  width: 3px;
+  height: 1.15em;
+  background: #e9a23b;
+  border-radius: 2px;
+}
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "message";
