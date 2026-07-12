@@ -8,7 +8,7 @@ permalink: /
 
 I'm <e>Mohit<e>. 
 
-I build AI systems and products across the stack. This blog is my public notebook for organizing what I’m learning about deep learning research, LLM inference, Computer Architecture and low-level optimization. Basically, anything I find cool.
+I build <span class="gold">AI systems</span> and products across the stack. This blog is my public notebook for organizing what I’m learning about <span class="lavender">deep learning research</span>, <span class="lavender">LLM inference</span>, <span class="cyan">Computer Architecture</span> and <span class="cyan">low-level optimization</span>. Basically, anything I find cool.
 
 Also a huge grappling nerd, so when I’m not sitting in front of my laptop, you’ll probably find me at the local wrestling or judo club. I’d love to get into BJJ eventually too (sadly, no clubs around ;( ).
 

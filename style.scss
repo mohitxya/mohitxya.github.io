@@ -766,7 +766,24 @@ footer {
     transform: scale(0.95);
   }
 }
+.gold {
+  color: #e9a23b;
+  font-weight: 500;
+}
 
+.lavender {
+  color: #b58adf;
+  font-weight: 500;
+}
+
+.cyan {
+  color: #70c5cf;
+  font-weight: 500;
+}
+
+.lavender-heading {
+  color: #b58adf;
+}
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
