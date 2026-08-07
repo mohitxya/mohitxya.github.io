@@ -38,6 +38,7 @@ topic: technical
     - prompt_token_ids, completion_token_ids, num_blocks, last_block_num_tokens. 
     - method to get a block using its ID. 
     - method to append a new token to our sequence. 
+
 ```python
 def __getstate__(self):
         last_state = self.last_token if not self.is_prefill else self.token_ids
