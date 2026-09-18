@@ -24,7 +24,7 @@ topic: technical
     - `tensor_parallel_size`: how many GPUs should jointly execute one model, by default it's set to one. 
     - `kvcache_block_size`: belongs to PagedAttention. Fixed size token blocks.  
 - Then the `__post_init__` methods runs a few checks. 
-#### sequence.py
+#### sequence.py:
 - This class is the central datastructure of the inference engine. 
 - Everything operates on `Sequence` objects. 
 - We have `WAITING`, `RUNNING` & `FINISHED` enums in sequence status class. 
@@ -53,3 +53,12 @@ def __setstate__(self, state):
         self.token_ids = []
         self.last_token = last_state
 ```
+#### block_manager.py:
+- `ref_count`: how many sequences are using it. 
+- We store a hash of the block's tokens. So if another request computes the same hash, the engine immediately knows.
+- `token_ids` to avoid collision on the off-chance two different token sequences produce the same hash. 
+
+
+#### scheduler.py:
+
+#### model_runner.py:
